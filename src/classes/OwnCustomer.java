@@ -1,36 +1,30 @@
 /**
- * Класс представляет единицу товара, которую продает продавец
+ *  В отображает товар, который купил покупатель
  */
 package classes;
 
 import java.util.Objects;
 
+
 /**
  *
  * @author jvm
  */
-public class Product{
+public class OwnCustomer {
+
     private String name;
     private Integer price;
 
-    public Product() {
+    public OwnCustomer() {
     }
 
-    public Product(String name, Integer price) {
+    public OwnCustomer(String name, Integer price) {
         this.name = name;
         this.price = price;
     }
-
-    public String getName() {
-        return name;
-    }
-
+    
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getPrice() {
-        return price;
     }
 
     public void setPrice(Integer price) {
@@ -40,8 +34,8 @@ public class Product{
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.name);
-        hash = 37 * hash + Objects.hashCode(this.price);
+        hash = 97 * hash + Objects.hashCode(this.name);
+        hash = 97 * hash + Objects.hashCode(this.price);
         return hash;
     }
 
@@ -56,7 +50,7 @@ public class Product{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Product other = (Product) obj;
+        final OwnCustomer other = (OwnCustomer) obj;
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
@@ -68,7 +62,10 @@ public class Product{
 
     @Override
     public String toString() {
-        return "Product{" + "name=" + name + ", price=" + price/100 + '}';
+        return "OwnCustomer{name=" + name + ", price=" + price + '}';
     }
+
+
     
 }
+

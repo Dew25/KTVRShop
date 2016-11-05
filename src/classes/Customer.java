@@ -13,27 +13,27 @@ import java.util.Objects;
  * @author jvm
  */
 public class Customer extends Person{
-    private List<Product>products;
+    private List<OwnCustomer>ownsCustomer;
     private Integer cash;
 
     public Customer() {
     }
 
-    public Customer(List<Product> products, Integer cash, String firstname, String lastname, String code) {
+    public Customer(List<OwnCustomer> ownsCustomer, Integer cash, String firstname, String lastname, String code) {
         super(firstname, lastname, code);
-        this.products = products;
+        this.ownsCustomer = ownsCustomer;
         this.cash = cash;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<OwnCustomer> getOwnsCustomer() {
+        return ownsCustomer;
     }
 
     public Integer getCash() {
         return cash;
     }
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setOwnsCustomer(List<OwnCustomer> products) {
+        this.ownsCustomer = products;
     }
 
     public void setCash(Integer cash) {
@@ -42,7 +42,7 @@ public class Customer extends Person{
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 79 * hash + Objects.hashCode(this.products);
+        hash = 79 * hash + Objects.hashCode(this.ownsCustomer);
         hash = 79 * hash + Objects.hashCode(this.cash);
         return hash;
     }
@@ -63,7 +63,7 @@ public class Customer extends Person{
             return false;
         }
         final Customer other = (Customer) obj;
-        if (!Objects.equals(this.products, other.products)) {
+        if (!Objects.equals(this.ownsCustomer, other.ownsCustomer)) {
             return false;
         }
         if (!Objects.equals(this.cash, other.cash)) {
@@ -75,12 +75,12 @@ public class Customer extends Person{
     @Override
     public String toString() {
         //для вывода списка продуктов необходимо перевести список в сторку товаров
-        String strProducts = ""; // инициируем переменную типа String
-        for (int i = 0; i < products.size(); i++) {//перебираем список продуктов
-            Product product = products.get(i); //получаем очередной (i) продукт
-            strProducts += product.toString()+", ";//добавляем к строке (оператор +=) запись об очередном продукте
+        String strOnesCustomer = ""; // инициируем переменную типа String
+        for (int i = 0; i < ownsCustomer.size(); i++) {//перебираем список продуктов
+            OwnCustomer ownCustomer = ownsCustomer.get(i); //получаем очередной (i) продукт
+            strOnesCustomer += ownCustomer.toString()+", ";//добавляем к строке (оператор +=) запись об очередном продукте
         }// строка со всеми продутами готова, используем ее в строке взврата.
-        return "Customer{имя: "+super.getFirstname()+" "+super.getLastname() + ", products=" + strProducts + "cash=" + cash/100 + '}';
+        return "Customer{имя: "+super.getFirstname()+" "+super.getLastname() + ", onesCustomer=" + strOnesCustomer + "cash=" + cash/100 + '}';
     }
 
 }

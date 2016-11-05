@@ -29,6 +29,7 @@
 package ktvrshop;
 
 import classes.Customer;
+import classes.OwnCustomer;
 import classes.Product;
 import classes.Seller;
 import java.util.ArrayList;
@@ -56,7 +57,7 @@ public class KTVRShop {
         System.out.println("Начальное состояние продавца:");
         System.out.println(seller.toString());
         System.out.println("-----------------------");
-        Customer customer = new Customer(new ArrayList<Product>(),50000,"Peter","Petrov","39801023345");
+        Customer customer = new Customer(new ArrayList<OwnCustomer>(),50000,"Peter","Petrov","39801023345");
         System.out.println("Начальное состояние покупателя:");
         System.out.println(customer.toString());
         System.out.println("------------------------");
@@ -68,7 +69,8 @@ public class KTVRShop {
             //заодно проверяем может ли покупатель заплатить цену
             if ("monitor".equals(product.getName())
                     && customer.getCash() >= product.getPrice()){//если проверка прошла успешно (true)
-                customer.getProducts().add(product);//добавляем продукт к списку покупателя
+                OwnCustomer oneCustomer = new OwnCustomer(product.getName(),product.getPrice());//инициируем товар покупателя из продукта продавца
+                customer.getOwnsCustomer().add(oneCustomer);//добавляем товар к списку покупателя
                 customer.setCash(customer.getCash() - product.getPrice());//уменьшаем деньги у покупателя на цену продукта
                 seller.setProfit(seller.getProfit() + product.getPrice()); //добавляем доход продавцу на сумму цены продукта
                 seller.getProducts().remove(product); // удаляем продукт из списка продавца (товар продан)

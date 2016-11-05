@@ -3,17 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package classes;
+package entity;
 
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author jvm
  */
+@Entity
 public class Seller extends Person{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nameShop;
+    //Сохраняем в базе список продуктов, даем все права на редакцию
+    @OneToMany(cascade = {CascadeType.ALL}, orphanRemoval = true)
+    @JoinColumn(name = "SELLER_ID")
     private List<Product>products;
     private Integer profit=0;
 
@@ -26,6 +40,14 @@ public class Seller extends Person{
         this.products = products;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
     public String getNameShop() {
         return nameShop;
     }
@@ -91,6 +113,7 @@ public class Seller extends Person{
         }
         return "Seller{name="+super.getFirstname()+" "+super.getLastname() + ", nameShop=" + nameShop + ", profit="+ profit/100+ ", products=" + strProducts +'}';
     }
+
 
 
     

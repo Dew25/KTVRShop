@@ -59,6 +59,7 @@ public class Seller extends Person{
 
     @Override
     public boolean equals(Object obj) {
+      //У всех наследников вызываем equals супера!!!
         if(!super.equals(obj)){
             return false;
         }
